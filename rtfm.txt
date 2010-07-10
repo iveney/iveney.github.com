@@ -1,0 +1,23 @@
+中文版
+------
+有一个古老而神圣的传统：如果你收到“RTFM”的回复，发信人认为你应该去“read the f**king manual”。他或她多半是对的，去读一下吧。
+RTFM有个年轻一点的亲戚，如果你收到“STFW”的回复，发信人认为你应该“search the f**king web”。那人多半也是对的，去搜一下吧。(更温和一点的说法是 “谷歌是你的朋友！”)
+
+你不应该觉得这样就被冒犯了，按黑客的标准，回复者没有不理你就是在向你表示某种尊敬，你反而应该感谢他热切地想帮助你。
+
+------------------------------------------------
+
+English Version
+------
+There is an ancient and hallowed tradition: if you get a reply that reads
+“RTFM”, the person who sent it thinks you should have Read The Fucking Manual.
+He or she is almost certainly right. Go read it.
+
+RTFM has a younger relative. If you get a reply that reads “STFW”, the person
+who sent it thinks you should have Searched The Fucking Web. He or she is
+almost certainly right. Go search it. (The milder version of this is when you
+are told “Google is your friend!”)
+
+You shouldn't be offended by this; by hacker standards, your respondent is
+showing you a rough kind of respect simply by not ignoring you. You should
+instead be thankful for this grandmotherly kindness.
