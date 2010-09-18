@@ -535,16 +535,15 @@ People(From left to right)
 <pre>This page is published using TiddlyWiki 2.4.0( by Jeremy Ruston, [[The BSD License|http://www.opensource.org/licenses/bsd-license.php]]), you may redistribute,edit and publish the contents, but you SHOULD adhere to [[Creative Commons 3.0|http://creativecommons.org/licenses/by-sa/3.0/deed.en]].
 When you reference the content of this page, please include a link to [[this file|SiteUrl]] and http://www.tiddlywiki.com/</pre>
 </div>
-<div title="About Zigang Xiao" modifier="Zigang" created="200808100827" modified="201005160416" changecount="237">
+<div title="About Zigang Xiao" modifier="Zigang" created="200808100827" modified="201005140638" changecount="206">
 <pre>{{justifycenter{
-//``There are 11 kinds of people in the world: those who know unary, and those who do not.&quot;//
+//``There are 11 kinds of people in the world, those who knows unary, and those who do not.&quot;//
 }}}
 |borderless|k
 |[img[./img/iveney.jpg]]|&lt;&lt;tiddler Profile&gt;&gt;|
 !
 {{justifycenter{
-@@font-size:10pt;Best Viewed in Firefox, Google Chrome; Resolution 1280 x 800 (or Larger) Full Screen@@
-@@font-size:10pt;Powered by ~TiddlyWiki | © 2010 Zigang Xiao@@
+@@color:lightgray;Best Viewed in Firefox, Google Chrome; Resolution 1024 x 768 (or Larger) Full Screen@@
 }}}</pre>
 </div>
 <div title="All about CS" modifier="Iveney" created="200808301552" modified="200809291129" changecount="13">
@@ -631,6 +630,9 @@ If you like playing basketball too, just call me and have a play whenever you ar
 <div title="C" modifier="Iveney" created="200809021311" changecount="1">
 <pre>Try answer these questions....
 *[[hard interview questions|http://everything2.com/title/hard%2520interview%2520questions]]</pre>
+</div>
+<div title="CV" modifier="Iveney" created="200808100945" modified="200911270858" changecount="10">
+<pre>Here's my [[CV|data/cv.pdf]](up to 2009-11-27) and [[Resume|data/resume_en.pdf]](not update for a long time).</pre>
 </div>
 <div title="Course" modifier="Iveney" created="200808200756" modified="201005100333" changecount="71">
 <pre>!Teaching Assistant
@@ -734,176 +736,6 @@ However, too little time to practice....
 *[[videosin 56.com|http://www.56.com/u41/v_Mzk5OTg0MDY.html]]:Good Guitar Tutorial
 *[[http://www.25yq.com/]]
 *[[Rockinblue|http://www.rockinblue.com/]]: Some good tutorials about blues style.</pre>
-</div>
-<div title="ImageSizePlugin" modifier="ELSDesignStudios" created="200801180032" modified="200902270002" tags="IconPackage systemConfig" creator="ELSDesignStudios" server.type="file" server.host="www.tiddlytools.com/#ImageSizePlugin" server.page.revision="200902270002">
-<pre>/***
-|Name|ImageSizePlugin|
-|Source|http://www.TiddlyTools.com/#ImageSizePlugin|
-|Version|1.2.1|
-|Author|Eric Shulman|
-|License|http://www.TiddlyTools.com/#LegalStatements|
-|~CoreVersion|2.1|
-|Type|plugin|
-|Description|adds support for resizing images|
-This plugin adds optional syntax to scale an image to a specified width and height and/or interactively resize the image with the mouse.
-!!!!!Usage
-&lt;&lt;&lt;
-The extended image syntax is:
-{{{
-[img(w+,h+)[...][...]]
-}}}
-where ''(w,h)'' indicates the desired width and height (in CSS units, e.g., px, em, cm, in, or %). Use ''auto'' (or a blank value) for either dimension to scale that dimension proportionally (i.e., maintain the aspect ratio). You can also calculate a CSS value 'on-the-fly' by using a //javascript expression// enclosed between &quot;&quot;&quot;{{&quot;&quot;&quot; and &quot;&quot;&quot;}}&quot;&quot;&quot;. Appending a plus sign (+) to a dimension enables interactive resizing in that dimension (by dragging the mouse inside the image). Use ~SHIFT-click to show the full-sized (un-scaled) image. Use ~CTRL-click to restore the starting size (either scaled or full-sized).
-&lt;&lt;&lt;
-!!!!!Examples
-&lt;&lt;&lt;
-{{{
-[img(100px+,75px+)[images/meow2.jpg]]
-}}}
-[img(100px+,75px+)[images/meow2.jpg]]
-{{{
-[&lt;img(34%+,+)[images/meow.gif]]
-[&lt;img(21% ,+)[images/meow.gif]]
-[&lt;img(13%+, )[images/meow.gif]]
-[&lt;img( 8%+, )[images/meow.gif]]
-[&lt;img( 5% , )[images/meow.gif]]
-[&lt;img( 3% , )[images/meow.gif]]
-[&lt;img( 2% , )[images/meow.gif]]
-[img(  1%+,+)[images/meow.gif]]
-}}}
-[&lt;img(34%+,+)[images/meow.gif]]
-[&lt;img(21% ,+)[images/meow.gif]]
-[&lt;img(13%+, )[images/meow.gif]]
-[&lt;img( 8%+, )[images/meow.gif]]
-[&lt;img( 5% , )[images/meow.gif]]
-[&lt;img( 3% , )[images/meow.gif]]
-[&lt;img( 2% , )[images/meow.gif]]
-[img(  1%+,+)[images/meow.gif]]
-{{tagClear{
-}}}
-&lt;&lt;&lt;
-!!!!!Revisions
-&lt;&lt;&lt;
-2009.02.24 [1.2.1] cleanup width/height regexp, use '+' suffix for resizing
-2009.02.22 [1.2.0] added stretchable images
-2008.01.19 [1.1.0] added evaluated width/height values
-2008.01.18 [1.0.1] regexp for &quot;(width,height)&quot; now passes all CSS values to browser for validation
-2008.01.17 [1.0.0] initial release
-&lt;&lt;&lt;
-!!!!!Code
-***/
-//{{{
-version.extensions.ImageSizePlugin= {major: 1, minor: 2, revision: 1, date: new Date(2009,2,24)};
-//}}}
-//{{{
-var f=config.formatters[config.formatters.findByField(&quot;name&quot;,&quot;image&quot;)];
-f.match=&quot;\\[[&lt;&gt;]?[Ii][Mm][Gg](?:\\([^,]*,[^\\)]*\\))?\\[&quot;;
-f.lookaheadRegExp=/\[([&lt;]?)(&gt;?)[Ii][Mm][Gg](?:\(([^,]*),([^\)]*)\))?\[(?:([^\|\]]+)\|)?([^\[\]\|]+)\](?:\[([^\]]*)\])?\]/mg;
-f.handler=function(w) {
-	this.lookaheadRegExp.lastIndex = w.matchStart;
-	var lookaheadMatch = this.lookaheadRegExp.exec(w.source)
-	if(lookaheadMatch &amp;&amp; lookaheadMatch.index == w.matchStart) {
-		var floatLeft=lookaheadMatch[1];
-		var floatRight=lookaheadMatch[2];
-		var width=lookaheadMatch[3];
-		var height=lookaheadMatch[4];
-		var tooltip=lookaheadMatch[5];
-		var src=lookaheadMatch[6];
-		var link=lookaheadMatch[7];
-
-		// Simple bracketted link
-		var e = w.output;
-		if(link) { // LINKED IMAGE
-			if (config.formatterHelpers.isExternalLink(link)) {
-				if (config.macros.attach &amp;&amp; config.macros.attach.isAttachment(link)) {
-					// see [[AttachFilePluginFormatters]]
-					e = createExternalLink(w.output,link);
-					e.href=config.macros.attach.getAttachment(link);
-					e.title = config.macros.attach.linkTooltip + link;
-				} else
-					e = createExternalLink(w.output,link);
-			} else 
-				e = createTiddlyLink(w.output,link,false,null,w.isStatic);
-			addClass(e,&quot;imageLink&quot;);
-		}
-
-		var img = createTiddlyElement(e,&quot;img&quot;);
-		if(floatLeft) img.align=&quot;left&quot;; else if(floatRight) img.align=&quot;right&quot;;
-		if(width||height) {
-			var x=width.trim(); var y=height.trim();
-			var stretchW=(x.substr(x.length-1,1)=='+'); if (stretchW) x=x.substr(0,x.length-1);
-			var stretchH=(y.substr(y.length-1,1)=='+'); if (stretchH) y=y.substr(0,y.length-1);
-			if (x.substr(0,2)==&quot;{{&quot;)
-				{ try{x=eval(x.substr(2,x.length-4))} catch(e){displayMessage(e.description||e.toString())} }
-			if (y.substr(0,2)==&quot;{{&quot;)
-				{ try{y=eval(y.substr(2,y.length-4))} catch(e){displayMessage(e.description||e.toString())} }
-			img.style.width=x.trim(); img.style.height=y.trim();
-			config.formatterHelpers.addStretchHandlers(img,stretchW,stretchH);
-		}
-		if(tooltip) img.title = tooltip;
-
-		// GET IMAGE SOURCE
-		if (config.macros.attach &amp;&amp; config.macros.attach.isAttachment(src))
-			src=config.macros.attach.getAttachment(src); // see [[AttachFilePluginFormatters]]
-		else if (config.formatterHelpers.resolvePath) { // see [[ImagePathPlugin]]
-			if (config.browser.isIE || config.browser.isSafari) {
-				img.onerror=(function(){
-					this.src=config.formatterHelpers.resolvePath(this.src,false);
-					return false;
-				});
-			} else
-				src=config.formatterHelpers.resolvePath(src,true);
-		}
-		img.src=src;
-		w.nextMatch = this.lookaheadRegExp.lastIndex;
-	}
-}
-
-config.formatterHelpers.addStretchHandlers=function(e,stretchW,stretchH) {
-	e.title=((stretchW||stretchH)?'DRAG=stretch/shrink, ':'')
-		+'SHIFT-CLICK=show full size, CTRL-CLICK=restore initial size';
-	e.statusMsg='width=%0, height=%1';
-	e.style.cursor='move';
-	e.originalW=e.style.width;
-	e.originalH=e.style.height;
-	e.minW=Math.max(e.offsetWidth/20,10);
-	e.minH=Math.max(e.offsetHeight/20,10);
-	e.stretchW=stretchW;
-	e.stretchH=stretchH;
-	e.onmousedown=function(ev) { var ev=ev||window.event;
-		this.sizing=true;
-		this.startX=!config.browser.isIE?ev.pageX:(ev.clientX+findScrollX());
-		this.startY=!config.browser.isIE?ev.pageY:(ev.clientY+findScrollY());
-		this.startW=this.offsetWidth;
-		this.startH=this.offsetHeight;
-		return false;
-	};
-	e.onmousemove=function(ev) { var ev=ev||window.event;
-		if (this.sizing) {
-			var s=this.style;
-			var currX=!config.browser.isIE?ev.pageX:(ev.clientX+findScrollX());
-			var currY=!config.browser.isIE?ev.pageY:(ev.clientY+findScrollY());
-			var newW=(currX-this.offsetLeft)/(this.startX-this.offsetLeft)*this.startW;
-			var newH=(currY-this.offsetTop )/(this.startY-this.offsetTop )*this.startH;
-			if (this.stretchW) s.width =Math.floor(Math.max(newW,this.minW))+'px';
-			if (this.stretchH) s.height=Math.floor(Math.max(newH,this.minH))+'px';
-			clearMessage(); displayMessage(this.statusMsg.format([s.width,s.height]));
-		}
-		return false;
-	};
-	e.onmouseup=function(ev) { var ev=ev||window.event;
-		if (ev.shiftKey) { this.style.width=this.style.height=''; }
-		if (ev.ctrlKey)  { this.style.width=this.originalW; this.style.height=this.originalH; }
-		this.sizing=false;
-		clearMessage();
-		return false;
-	};
-	e.onmouseout=function(ev) { var ev=ev||window.event;
-		this.sizing=false;
-		clearMessage();
-		return false;
-	};
-}
-//}}}</pre>
 </div>
 <div title="InlineJavascriptPlugin" modifier="ELSDesignStudios" created="200512130544" modified="200806111415" tags="DiscoveryPackage IconPackage MediaPackage TaskPackage TidIDEPackage systemConfig QuickEditPackage ScrollbarPackage" server.type="file" server.host="www.tiddlytools.com" server.page.revision="200806111415" changecount="2">
 <pre>/***
@@ -1085,23 +917,22 @@ Here's some useful tips, my experience and interesting topics.
 &lt;/a&gt;
 &lt;/html&gt;</pre>
 </div>
-<div title="MainMenu" modifier="Zigang" created="200808100817" modified="201005141437" changecount="98">
+<div title="MainMenu" modifier="Zigang" created="200808100817" modified="201005140634" changecount="81">
 <pre>!Main Menu
 *[[Profile|About Zigang Xiao]]
 *[[Research]]
 *[[Publication]]
 *[[Course]]
 *[[Personal]]
-*[[CV|data/CV_ZigangXiao.pdf]] 
-!Misc
+*[[CV]]
 *[[Links]]
+!News
+*[[Traditional Chinese]]
+!Powered by
 *[[TiddlyWiki]]
 !
 {{justifycenter{
-
 [img[./img/cuhk.gif][http://www.cuhk.edu.hk]]
-
-&lt;&lt;tiddler visitor&gt;&gt;
 }}}</pre>
 </div>
 <div title="Makefile" modifier="Iveney" created="200809291126" modified="200809291126" changecount="2">
@@ -1464,9 +1295,8 @@ if (version.major+.1*version.minor+.01*version.revision&gt;=2.2) {
 <div title="OpenSourceLicense" modifier="Iveney" created="200808100842" changecount="2">
 <pre>TiddlyWiki is published under a BSD OpenSourceLicense that gives you the freedom to use it pretty much however you want, including for commercial purposes, as long as you keep my copyright notice. (You can see the full license text by doing a 'view source' in your browser). If you do use TiddlyWiki I'd appreciate a link back to http://www.tiddlywiki.com.</pre>
 </div>
-<div title="Personal" modifier="Zigang" created="200808210732" modified="201005141430" changecount="18">
+<div title="Personal" modifier="Zigang" created="200808210732" modified="201005140628" changecount="17">
 <pre>*[[Interests]]
-*[[Traditional Chinese]]
 *[[All about CS]]
 *[[Books]]
 *[[Fun]]
@@ -1480,16 +1310,15 @@ if (version.major+.1*version.minor+.01*version.revision&gt;=2.2) {
 <pre>I am totally a newbie in this field.
 And I want to buy [[D90|http://www.dpreview.com/reviews/nikond90/]] recently.</pre>
 </div>
-<div title="Profile" modifier="Zigang" created="200808100826" modified="201005171547" changecount="84">
+<div title="Profile" modifier="Zigang" created="200808100826" modified="201005131510" changecount="57">
 <pre>!About Me
-''Zigang Xiao'' (Cantonese: Siu Tsi Kong). 
-Simplified Chinese: 肖子刚, Traditional Chinese: [[蕭子剛|肖与蕭]], [[public key]]
+XIAO Zigang, Iveney(zh_CN: 肖子刚 | zh_TW: [[蕭子剛|肖与蕭]] ), [[public key]]
 
-Currently I am a 2nd year M.Phil. student under the supervision of Prof. [[Evangeline F.Y. Young|http://www.cse.cuhk.edu.hk/~fyyoung/]] in the [[Department of Computer Science and Engineering|http://www.cse.cuhk.edu.hk]], [[The Chinese University of Hong Kong|http://www.cuhk.edu.hk]]. My research interests include VLSI CAD (EDA), OS, PL.You may find a list of my publications [[here|pub.html]].
+Currently I am a 2nd year M.Phil. student under the supervision of Prof. [[Evangeline F.Y. Young|http://www.cse.cuhk.edu.hk/~fyyoung/]] in the [[Department of Computer Science and Engineering|http://www.cse.cuhk.edu.hk]], [[The Chinese University of Hong Kong|http://www.cuhk.edu.hk]]. My research interests include VLSI CAD, OS, PL.You may find a list of my publications [[here|pub.html]].
 !Education
-*08/2008-07/2010 (expected), M.Phil., [[Computer Science &amp; Engineering|http://www.cse.cuhk.edu.hk]], [[CUHK|http://www.cuhk.edu.hk]]
-*Spring 2007, Exchange (dean's list), [[Computer Science &amp; Engineering|http://www.cse.ust.hk]],  [[HKUST|http://www.ust.hk]]
-*2004-2008, B.Sc. (with honor), Dept. of [[Computer Science|http://sist.sysu.edu.cn/]], [[SYSU|http://www.sysu.edu.cn]]
+*2008-(now), M.Phil., [[Computer Science &amp; Engineering|http://www.cse.cuhk.edu.hk]], [[CUHK|http://www.cuhk.edu.hk]]
+*Spring 2007, Exchange, [[Computer Science &amp; Engineering|http://www.cse.ust.hk]],  [[HKUST|http://www.ust.hk]]
+*2004-2008, B.Sc., [[Computer Science|http://sist.sysu.edu.cn/]], [[SYSU|http://www.sysu.edu.cn]]
 !Office
 Room 506, Ho ~Sin-Hang Engineering Building, CUHK.
 !Contact
@@ -1497,7 +1326,8 @@ Tel(Office): (852) 3163-4265
 Email : ''zgxiao # cse.cuhk.edu.hk'' (replace '#' with '@')
 (GEEK) my gtalk : [  {{{echo &quot;aXZlbmV5QGdtYWlsLmNvbQo=&quot; | base64 -d}}}   ]  :p
  
- </pre>
+   
+  </pre>
 </div>
 <div title="Publication" modifier="Iveney" created="200808200756" modified="201001080329" changecount="51">
 <pre>* ''Zigang XIAO'' and Evangeline F.Y. Young, &quot;[[CrossRouter: A Droplet Router for ~Cross-Referencing Digital Microfluidic Biochips|XIAO2010CrossRouter.pdf]]&quot;, to be appeared in //[[ASP-DAC '10|http://www.asp-dac.itri.org.tw/aspdac2010/index.html]]//, &lt;&lt;slider chkSliderBib XIAO2010CrossRouter bibtex&gt;&gt;
@@ -1533,16 +1363,6 @@ VLSI CAD, Operating System, Programming Language.
 !About Research 
 *[[GRADUATE STUDY IN THE COMPUTER AND MATHEMATICAL SCIENCES: A Survival Manual|http://www.cs.umd.edu/~oleary/gradstudy/node2.html]]
 *[[How to Review a Technical Paper|http://eetd.lbl.gov/EA/Buildings/ALAN/Publications/how.to.review.html]]</pre>
-</div>
-<div title="SideBarOptions" modifier="Zigang" created="201005180258" changecount="1">
-<pre>&lt;&lt;search&gt;&gt;&lt;&lt;closeAll&gt;&gt;&lt;&lt;permaview&gt;&gt;&lt;&lt;newTiddler&gt;&gt;&lt;&lt;newJournal &quot;DD MMM YYYY&quot; &quot;journal&quot;&gt;&gt;&lt;&lt;saveChanges&gt;&gt;&lt;script&gt; 
-if (!readOnly) return &quot;&lt;&lt;slider chkSliderOptionsPanel OptionsPanel [[options »]] [[Change TiddlyWiki advanced options]]&gt;&gt;&quot;; 
-&lt;/script&gt;</pre>
-</div>
-<div title="SideBarTabs" modifier="Zigang" created="201005180300" modified="201005180300" changecount="2">
-<pre>&lt;script&gt; 
-if (!readOnly) return '&lt;&lt;tabs txtMainTab &quot;Timeline&quot; &quot;Timeline&quot; TabTimeline &quot;All&quot; &quot;All tiddlers&quot; TabAll &quot;Tags&quot; &quot;All tags&quot; TabTags &quot;More&quot; &quot;More lists&quot; TabMore&gt;&gt;'; 
-&lt;/script&gt;</pre>
 </div>
 <div title="SinglePageModePlugin" modifier="Iveney" created="200512271815" modified="200808121405" tags="NavigationPackage systemConfig" creator="ELSDesignStudios" server.type="file" server.host="www.tiddlytools.com/#SinglePageModePlugin" server.page.revision="200806121934" changecount="1">
 <pre>/***
@@ -1812,25 +1632,25 @@ As a cultural asset (`國粹') accumulated for near five thousand years, I think
 Here is a list of traditional Chinese characters generated by LaTeX+CJKutf8.
 {{{TODO: find javascript code to display images as grids.}}}</pre>
 </div>
-<div title="Travel" modifier="Zigang" created="200808120300" modified="201005261206" changecount="64">
-<pre>I like traveling. However, due to limited time and money resource, I can only go to one or two places per year.
-Click [[here|university]] to discover the universities I stayed.
-!San Francisco
-[img(430px,)[Golden Gate Bridge|./img/goldengate.jpeg]]  [img(430px,)[Stanford University|./img/stanford.jpeg]]
-[img(430px,)[Alcatraz Island|./img/alcatraz.jpeg]]  [img(430px,)[Lombard Street|./img/lombard.jpeg]]
+<div title="Travel" modifier="Zigang" created="200808120300" modified="201005140624" changecount="33">
+<pre>I like traveling. However, due to limited time and money resource ...
+But I still managed to go to one or two places per year.
 !Taipei
- [img(430px,)[National Musical Hall|./img/bldg.jpg]]   [img(430px,)[National Imperial Palace|./img/palace.jpg]]
-[img(430px,)[Freedom Square|./img/freedom.jpg]]  [img(430px,)[Taipei 101 Building|./img/101.jpg]]
+!San Francisco
 !Tibet - Lhasa - Potala Palace
 [img[./img/potala.jpg]]
 !Mt. Everest - Qomolangma
 [img[./img/jump.jpg]]
 !Nepal - Kathmandu - Pashupatinath Temple
 [img[./img/nepal.jpg]]
+!HKUST
+[img[Eating Noodles w/Roomates|http://lh3.ggpht.com/_RC6i-iwi6Dk/RhE2EMB5paI/AAAAAAAAAus/TPGjbcVD6I8/s288/DSCN1283.JPG]]  [img[View Outside New Hall|http://lh3.ggpht.com/_RC6i-iwi6Dk/RuVn7js_7YI/AAAAAAAAGOI/WCxbCYTQNPE/s288/_ICT0144.JPG]]
 !Macau
-[img(600px+,)[St. Paul's|http://lh4.ggpht.com/_RC6i-iwi6Dk/Rtw0-Ds_xKI/AAAAAAAAE4g/f34f2F8O3Rg/s800/P1000334.JPG&quot;]]
+&lt;html&gt;
+&lt;img src=&quot;http://lh4.ggpht.com/_RC6i-iwi6Dk/Rtw0-Ds_xKI/AAAAAAAAE4g/f34f2F8O3Rg/s800/P1000334.JPG&quot; style=&quot;width: 600px; &quot;/&gt;
+&lt;/html&gt;
 !Guilin
-[img(600px+,)[http://lh5.ggpht.com/_RC6i-iwi6Dk/RhMZTfPE6SI/AAAAAAAAB4g/-AZ4cv7ThxU/s800/07.JPG]]</pre>
+[img[http://lh5.ggpht.com/_RC6i-iwi6Dk/RhMZTfPE6SI/AAAAAAAAB4g/-AZ4cv7ThxU/s800/07.JPG]]</pre>
 </div>
 <div title="VIM" modifier="Iveney" created="200808130235" modified="200808130239" changecount="13">
 <pre>Very powerful text editor.
@@ -2147,34 +1967,6 @@ cat hello.txt
 }}}
 !Don't know what is going on?
 Check the links below. I wish I could have enough time and knowledge to write an introduction by myself.</pre>
-</div>
-<div title="university" modifier="Zigang" created="201005261206" modified="201006161026" changecount="11">
-<pre>!SYSU (Bachelor)
-[img(300px,)[http://lh5.ggpht.com/_RC6i-iwi6Dk/RhKgQcB5sYI/AAAAAAAABGo/7Kf5Sf5rZR8/s400/%E5%AD%99%E4%B8%AD%E5%B1%B1%E8%B1%A1.jpg]]  [img(300px,)[http://lh4.ggpht.com/_RC6i-iwi6Dk/RhKgHMB5sGI/AAAAAAAABEY/Yn1TmlLOhO8/s400/%E6%80%80%E5%A3%AB%E5%A0%82_%E5%B0%8F%E7%A4%BC%E5%A0%82.jpg]]
-!HKUST (Exchange)
-[img(300px,)[Eating Noodles w/Roomates|http://lh3.ggpht.com/_RC6i-iwi6Dk/RhE2EMB5paI/AAAAAAAAAus/TPGjbcVD6I8/s400/DSCN1283.JPG]]  [img(300px,)[View Outside New Hall|http://lh3.ggpht.com/_RC6i-iwi6Dk/RuVn7js_7YI/AAAAAAAAGOI/WCxbCYTQNPE/s400/_ICT0144.JPG]]
-!CUHK (Master)
-!UIUC (PhD)
-!HKU
-[img(,300px)[http://lh3.ggpht.com/_RC6i-iwi6Dk/Rue7i8Q47KI/AAAAAAAAGuk/g3QjJbI2rBA/s400/%E5%85%AD%C2%B7%E5%9B%9B%E8%80%BB%E8%BE%B1%E6%9F%B1.jpg]]
-!CityU
-[img(300px,)[http://lh6.ggpht.com/_RC6i-iwi6Dk/RgoXlsB5jzI/AAAAAAAAABc/FtDuO--JNEc/s400/pict0114.jpg]]</pre>
-</div>
-<div title="visitor" modifier="Zigang" created="201005141415" modified="201005141422" changecount="5">
-<pre>&lt;html&gt;
-&lt;a href=&quot;http://www3.clustrmaps.com/counter/maps.php?url=http://www.cse.cuhk.edu.hk/~zgxiao&quot; id=&quot;clustrMapsLink&quot;&gt;&lt;img src=&quot;http://www3.clustrmaps.com/counter/index2.php?url=http://www.cse.cuhk.edu.hk/~zgxiao&quot; style=&quot;border:0px;width:130px&quot; alt=&quot;Locations of visitors to this page&quot; title=&quot;Locations of visitors to this page&quot; id=&quot;clustrMapsImg&quot; /&gt;
-&lt;/a&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-function cantload() {
-img = document.getElementById(&quot;clustrMapsImg&quot;);
-img.onerror = null;
-img.src = &quot;http://www2.clustrmaps.com/images/clustrmaps-back-soon.jpg&quot;;
-document.getElementById(&quot;clustrMapsLink&quot;).href = &quot;http://www2.clustrmaps.com&quot;;
-}
-img = document.getElementById(&quot;clustrMapsImg&quot;);
-img.onerror = cantload;
-&lt;/script&gt;
-&lt;/html&gt;</pre>
 </div>
 <div title="肖与蕭" modifier="Iveney" created="200809180747" modified="200809180747" changecount="2">
 <pre>[[萧、肖姓氏用字混而不分 肖扬院长到底姓什么?|http://www.baidu.com/s?ie=gb2312&amp;bs=%D0%A4+%D0%CE%CA%BD&amp;sr=&amp;z=&amp;cl=3&amp;f=8&amp;tn=baidu&amp;wd=%D0%A4+%D0%D5%CA%CF&amp;ct=0]]
