@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 1.11.0 (99371)"/><meta name="created" content="2010-12-13 13:27:05 -0600"/><meta name="updated" content="2010-12-13 18:19:26 -0600"/><title>Algorithm Notes</title></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">
+<ul>
+<li>Preliminary
+<ul>
+<li>Data structure &amp; algos: sorting, shortest-path, etc.</li>
+<li>graph theory and compute representation<br/></li>
+<li>Asymptotic notation<br/></li>
+<li>Induction</li>
+<li>Recurrence</li>
+<li>Math: probability &amp; stat, Linear algebra, modular arithmetic, set theory, logic, logarithm</li>
+</ul>
+</li>
+<li>P vs NP, NP-hard, NPC
+<ul>
+<li>Cook's Theorem</li>
+<li>CircuitSAT, SAT, 3SAT, VertexCover, MaxIndSet, 3Color, Clique, HamCycle, TSP, Subset Sum</li>
+<li><font color="#FF2F2B">NP-hard reduction</font> (reduce a known NP-hard to the problem P, show solutions can transform to each other `iff' )</li>
+</ul>
+</li>
+<li>Recursion, Divide &amp; conquer, 
+<ul>
+<li>Hanoi, mergesort, quicksort, Tarjan's Median selection (O(n)), multiplication, exponentiation<br/></li>
+</ul>
+</li>
+<li>Backtrack &amp; DP (<font color="#FF2F2B">Smart Recursion, Memoization</font>)
+<ul>
+<li>n Queens</li>
+<li>Subset Sum (exp. DP!) </li>
+<li>Longest Increasing Sequence (DP!)</li>
+<li>Optimal Binary Search Tree (DP!)</li>
+<li>Fibonacci numbers, Edit Distance</li>
+<li>DP on trees: MaxIndSetSize (consider w/ vertex v or w/o, recurse, store node in tree)</li>
+</ul>
+</li>
+<li>Advanced DP (*)
+<ul>
+<li>Save space: sliding window. O(mn) to O(m). !!Can use DP to backtrack `dumped' information</li>
+<li>Save time: sparseness, monotonicity</li>
+</ul>
+</li>
+<li>FFT (*), Divide and Conquer
+<ul>
+<li>operations: Evaluate, Add, Multiply<br/></li>
+<li>coefficient form: p(x) = \sum (aj x^j), where x^j are j-th order polynomials, O(n), O(n), O(n^2)</li>
+<li>root form: p(x) = s \multiply (x-rj), where rj are roots, O(n), \infty, O(n)</li>
+<li>sample form: p interpolates the points (xj,yj), j=0 .. n, O(n^2), O(n), O(n)</li>
+<li>Idea: fast converting between coefficient form and sample form, perform the efficient operation</li>
+</ul>
+</li>
+<li>Greedy
+<ul>
+<li>Sorting files on tape, scheduling classes, Huffman codes, interval graph chromatic number</li>
+<li>Structure:
+<ul>
+<li>assume there is an optimal solution that is different from greedy</li>
+<li>find the first `difference' between two solutions</li>
+<li>argue that can exchange optimal choice for the greedy choice w/o degrading solution</li>
+</ul>
+</li>
+<li><font color="#FF2F2B">Design approximation algorithm</font>
+<ul>
+<li>Load Balancing: 2-approx online, 3/2-approx offline</li>
+<li>Vertex Cover: O(logn)-approx</li>
+<li>Bin-packing</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Approximation algorithms
+<ul>
+<li><font color="#FF2F2B">Strategy: write down (list) simple inequalities and glue them tgt to find bounds (find OPT)<br/></font></li>
+<li>load balancing, vertex cover, set cover</li>
+<li>TSP:
+<ul>
+<li>general TSP: no poly-time approximation</li>
+<li>TSP w/ triangular inequality: 2-approx using MST</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Randomized algorithms
+<ul>
+<li><font color="#FF1E18">Definition of Expectation, Linearity </font><br/></li>
+<li>Nuts and bolts, randomized quicksort</li>
+</ul>
+</li>
+<li>Randomized Binary Search Trees
+<ul>
+<li>Treap: btree w/ search key and randomized priority
+<ul>
+<li>expected depth of xk is O(logn)</li>
+<li>expected depth of treap is O(logn) w/ high probability (use Chernoff bound)</li>
+<li>result of inserting keys in random order<br/></li>
+<li>recursion tree created by randomized version of quicksort</li>
+<li>Pr[A^i_k] = 1/(k-i+1), prob of xi is a proper ancestor of xk, where xk denotes the node w/ kth smallest search key</li>
+</ul>
+</li>
+<li>Skip lists
+<ul>
+<li>depth is O(logn) with hight probability (HP)</li>
+<li><font color="#FF1E18">HP: prob is at least 1-1/n^c for some constant c>=1</font></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Tail Inequalities:
+<ul>
+<li><font color="#FF1E18">Markov's Inequality</font></li>
+<li><font color="#FF1E18">Chernoff bound</font></li>
+</ul>
+</li>
+<li>Hash Tables</li>
+<li>Randomized minimum cut: amplification
+<ul>
+<li>run the (randomized) guessing algorithm over and over again</li>
+<li>not 100% correct solution, but in practice w/ high probability is enough</li>
+<li>trade correctness w/ runtime</li>
+</ul>
+</li>
+<li><font color="#FF1E18">Max Flow Min Cut</font>
+<ul>
+<li>Max flow: flow that saturates every edge leaving s (entering t)</li>
+<li>Min cut: ||S,T|| is minimized</li>
+<li><font color="#FF1E18">|f| = ||S,T|| iff f saturates every edge from S to T and avoids every edge from T to S</font></li>
+<li><font color="#FF1E18">max-flow min-cut theorem, proof</font></li>
+<li><font color="#FF1E18">Integer capacity -> Integer Flow</font></li>
+<li>Algos
+<ul>
+<li><font color="#FF1E18">FF: O(E|f*|), exponential in the worst case! May not halt if cap is irrational</font></li>
+<li>Fat pipe: choose aug. path w/ largest bottleneck value: O(E^2 logE log|f*|)</li>
+<li>Short pipe: choose aug. path w/ fewest edges: O(VE^2)</li>
+<li>current best: Dinits, O(V^E), O(VElogV) w/ dynamic trees</li>
+</ul>
+</li>
+<li>Application:
+<ul>
+<li>Edge Disjoin Paths</li>
+<li>Vertex Capacities and Vertex Disjoint Paths</li>
+<li>Maximum (cardinality) matching in bipartite graph</li>
+<li>assignment problem</li>
+<li><font color="#FF1E18">Pattern: reduce the problem to max flow, prove the solutions are equivalent</font>
+<ul>
+<li><font color="#FF1E18">Note that we can prove feasible sol(a) iff feasible sol(b), and thus best(a)=best(b)</font></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Extensions:
+<ul>
+<li>Max flow w/ edge demands</li>
+<li>Min cost flow</li>
+<li>Node supplies and demands</li>
+<li>Maximum weight matchings</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Linear Programming
+<ul>
+<li>General/Canonical/Slack form</li>
+<li>Example: shortest path, max flow, min cut</li>
+<li>Duality</li>
+<li>Simplex, geometry interpretation, computing the basis</li>
+</ul>
+</li>
+</ul>
+</body></html>
