@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="description" content="index.html" />
+	<meta name="keywords" content=" " />
+	<meta name="generator" content="indexify V.20031112 ( Super User )" />
+	<link rel="stylesheet" type="text/css" href="index.css" />
+	<title>index.html</title>
+</head>
+<body>
+<div id="header">
+	<a href="http://icims.csl.uiuc.edu"> <img src="http://www.uiuc.edu/images/running_bar.gif" alt="[UIUC]" /> </a>
+	<h1> <a href="http://icims.csl.uiuc.edu"> UIUC iCIMS </a> </h1>
+	<h2> <a href="/~zxiao2">zxiao2</a></h2>
+	<h3>zxiao2</h3>
+</div>
+
+<div id="content">
+<div id="dirlist">
+<table>
+<tr valign="baseline">
+	<td > <div class="icon"> <a href=".."> <img src="http://icims.csl.uiuc.edu/images/icons/folder.gif" alt="[dir]" style="border:none" /></a> </div></td>
+	<td ><a href="..">&lt;Up&gt;</a></td>
+</tr>
+
+</table>
+</div>
+<div id="filelist">
+<table>
+<tr><td></td></tr>
+</table>
+</div>
+<div id="imglist">
+<table>
+<tr><td></td></tr>
+</table>
+</div>
+
+</div>
+<div id="footer">
+<!-- indexify V.20031112 footer -->
+<a href="http://validator.w3.org/check/referer"><img src="http://icims.csl.uiuc.edu/images/valid-xhtml11.png" alt="Valid XHTML 1.1!" style="border:none"  /></a>
+<a href="http://jigsaw.w3.org/css-validator/">
+<img src="http://icims.csl.uiuc.edu/images/vcss.png" alt="Valid CSS!" style="border:none" /> </a>
+Created 20031114 Super-User 	<script type="text/javascript"><!-- 
+	modi = new Date(document.lastModified);
+	mz=((modi.getMonth()+1)<=9?"0":""); 
+	dz=(modi.getDate()<=9?"0":""); 
+	document.writeln("Updated: " +
+		(1900 + modi.getYear()) 
+		+ mz + (1+modi.getMonth()) 
+		+ dz + modi.getDate()); 
+	//--></script>
+ 
+</div>
+</body>
+</html>
