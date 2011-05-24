@@ -1,0 +1,73 @@
+
+<!-- saved from url=(0084)file://localhost/var/folders/DJ/DJEjhnAAEvuyWgmVWdvKEE+++TM/-Tmp-/ssh-alias.mkd.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+          <title>ssh-alias.mkd</title>
+          <style type="text/css">      body{
+        background-color: #FFFFFF;
+        padding: 20px;
+        margin: 0px;
+      }
+      pre{
+        border: solid #DEDEDE 1px;
+        background-color: #F6F6F6;
+        padding: 4px;
+      }
+      code{
+        border: solid #DEDEDE 1px;
+        background-color: #F6F6F6;
+        padding: 1px;
+        font-family: monospace;
+      }
+      pre > code{
+        border: none;
+        padding: none;
+      }
+      blockquote{
+        border: dashed #AEAEAE 1px;
+        background-color: #F6F6F6;
+        padding: 4px 10px 4px 10px;
+        font-family: monospace;
+      }
+      div#main-container{
+        background-color: #F2F2F2;
+        padding: 20px;
+        margin: 0px;
+        border: solid #D0D0D0 1px;
+      }
+</style>
+        </head>
+        <body>
+          <div id="main-container">
+            <h1>Introduction</h1>
+
+<p>This article is based on <a href="http://osxdaily.com/2011/04/05/setup-ssh-config-fie/">Setup an SSH Config File</a> and <a href="http://osxdaily.com/2011/04/06/enable-tab-completion-for-ssh-aliases/">Enable Tab
+Completion for SSH Aliases</a>.</p>
+
+<h2>Setup an SSH Config File</h2>
+
+<p>For example, if you want to login to a server named <code>myhost.com</code> using user
+name <code>maverick</code>.
+Edit your ~/.ssh/config file as follows:</p>
+
+<pre><code>Host myhost
+    HostName myhost.com
+    User  maverick
+</code></pre>
+
+<p>Then, you can just use:</p>
+
+<pre><code>$ ssh myhost
+</code></pre>
+
+<p>to login.</p>
+
+<h2>Enable Tab Completion for SSH Aliases</h2>
+
+<p>Add this to your <code>.profile</code>.</p>
+
+<pre><code>complete -o default -o nospace -W "$(grep '^Host' $HOME/.ssh/config | cut -d ' ' -f2)" scp sftp ssh
+</code></pre>
+          <div>
+        
+      
+</div></div></body></html>

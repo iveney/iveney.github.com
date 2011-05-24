@@ -1,0 +1,71 @@
+
+<!-- saved from url=(0082)file://localhost/var/folders/DJ/DJEjhnAAEvuyWgmVWdvKEE+++TM/-Tmp-/c++-new.mkd.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+          <title>c++-new.mkd</title>
+          <style type="text/css">      body{
+        background-color: #FFFFFF;
+        padding: 20px;
+        margin: 0px;
+      }
+      pre{
+        border: solid #DEDEDE 1px;
+        background-color: #F6F6F6;
+        padding: 4px;
+      }
+      code{
+        border: solid #DEDEDE 1px;
+        background-color: #F6F6F6;
+        padding: 1px;
+        font-family: monospace;
+      }
+      pre > code{
+        border: none;
+        padding: none;
+      }
+      blockquote{
+        border: dashed #AEAEAE 1px;
+        background-color: #F6F6F6;
+        padding: 4px 10px 4px 10px;
+        font-family: monospace;
+      }
+      div#main-container{
+        background-color: #F2F2F2;
+        padding: 20px;
+        margin: 0px;
+        border: solid #D0D0D0 1px;
+      }
+</style>
+        </head>
+        <body>
+          <div id="main-container">
+            <p>Note that <code>operator new</code> is different from the keyword <code>new</code>.
+<code>Operator new</code> is <em>declared</em> in STL header <code>&lt;new&gt;</code>.
+You can check your systems C++ header <code>&lt;new&gt;</code> (For instance, mine is stored in
+<code>/usr/include/c++/4.2.1/new</code>).</p>
+
+<p>The followings are equivalent:</p>
+
+<ol>
+<li><pre><code> int *a = new [10];
+</code></pre></li>
+<li><pre><code> int *a = (int *) operator new(10);
+</code></pre></li>
+</ol>
+
+
+<p>For the code listed below, there are actually three steps after calling <code>new</code>:</p>
+
+<pre><code>string *sp = new string("initializing");
+</code></pre>
+
+<ol>
+<li>The expression calls standard library function <code>operator new</code>, allocate
+enough raw untyped memory in order to save the object.</li>
+<li>The constructor of <code>string</code> is called.</li>
+<li>Return the pointer to the newly constructed object.</li>
+</ol>
+
+          <div>
+        
+      
+</div></div></body></html>

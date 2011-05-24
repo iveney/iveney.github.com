@@ -1,0 +1,23 @@
+Note that `operator new` is different from the keyword `new`.
+`Operator new` is *declared* in STL header `<new>`.
+You can check your systems C++ header `<new>` (For instance, mine is stored in
+`/usr/include/c++/4.2.1/new`).
+
+The followings are equivalent:
+
+1. 
+
+        int *a = new [10];
+
+2. 
+
+        int *a = (int *) operator new(10);
+
+For the code listed below, there are actually three steps after calling `new`:
+
+    string *sp = new string("initializing");
+
+1. The expression calls standard library function `operator new`, allocate 
+enough raw untyped memory in order to save the object.
+2. The constructor of `string` is called.
+3. Return the pointer to the newly constructed object.

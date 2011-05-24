@@ -1,0 +1,4 @@
+A Collection of VIM scripts and configurations
+==============================================
+
+[C++ code completion](http://vim.wikia.com/wiki/C++_code_completion)

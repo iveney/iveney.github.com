@@ -1,0 +1,15 @@
+Adaptor is a *design pattern*.
+Adaptor is not an actual implementation of a container.
+But adaptor *models* the *Container* concept, and thus can be used 
+as a container.
+Adaptor *wrapps* another container to behave like a container.
+In C++ STL, `queue`, `priority_queue` and `stack` are adaptors.
+For example, in the class implementation of `queue`, it uses `deque`
+as its default container as follows:
+
+    template<typename _Tp, typename _Sequence = deque<_Tp> > 
+      class stack {
+         _Sequence c;
+         void pop() { c.pop_back(); }
+      };
+

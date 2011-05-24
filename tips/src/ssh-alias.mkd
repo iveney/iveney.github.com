@@ -1,0 +1,26 @@
+Introduction
+============
+This article is based on [Setup an SSH Config File][ssh-config] and [Enable Tab
+Completion for SSH Aliases][bash-ssh-completion].
+
+Setup an SSH Config File
+------------------------
+For example, if you want to login to a server named `myhost.com` using user
+name `maverick`.
+Edit your ~/.ssh/config file as follows:
+    Host myhost
+        HostName myhost.com
+        User  maverick
+
+Then, you can just use:
+    $ ssh myhost
+
+to login.
+
+Enable Tab Completion for SSH Aliases
+-------------------------------------
+Add this to your `.profile`.
+    complete -o default -o nospace -W "$(grep '^Host' $HOME/.ssh/config | cut -d ' ' -f2)" scp sftp ssh
+
+[ssh-config]: http://osxdaily.com/2011/04/05/setup-ssh-config-fie/
+[bash-ssh-completion]: http://osxdaily.com/2011/04/06/enable-tab-completion-for-ssh-aliases/
