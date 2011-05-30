@@ -19,10 +19,10 @@ Basic idea
 
 > 1. Load the app into gdb (or attach to the already running process). Just let the app load and then break into gdb with control-c (if you are starting from gdb).
 > 2. Check with vmmap the memory region for the `__TEXT` segment for the program you want to dump.
-> 3. Dump that memory region to a file using gdb “dump memory” command.
-> 4. Write the memory dump into the original file (you must replace the original `__TEXT` segment with the dumped one). You can use copy&paste inside an hex editor (that’s what I did), or you can use Pedram trick with “dd” (that’s what I should have done, DOH). Don’t forget to calculate the correct offset for the `__TEXT` segment (beware with fat binaries). My first approach was to dump the whole program, when in reality only the `__TEXT` segment is required. Hey, it was a quick test and I give it a little thought while getting ready to write this  .
+> 3. Dump that memory region to a file using gdb "dump memory" command.
+> 4. Write the memory dump into the original file (you must replace the original `__TEXT` segment with the dumped one). You can use copy&paste inside an hex editor (that's what I did), or you can use Pedram trick with "dd" (that's what I should have done, DOH). Don't forget to calculate the correct offset for the `__TEXT` segment (beware with fat binaries). My first approach was to dump the whole program, when in reality only the `__TEXT` segment is required. Hey, it was a quick test and I give it a little thought while getting ready to write this  .
 > 5. Fix the flags for `LC_SEGMENT/__TEXT` from `0×8` to `0×0` (else it will still try to decrypt the binary and the result will be garbage and a nice crash).
-> 6. That’s it.
+> 6. That's it.
 
 Details
 =======

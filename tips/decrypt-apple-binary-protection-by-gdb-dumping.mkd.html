@@ -59,10 +59,10 @@ Hence, by utilizing this point one can dump an unencrypted program.</p>
 <blockquote><ol>
 <li>Load the app into gdb (or attach to the already running process). Just let the app load and then break into gdb with control-c (if you are starting from gdb).</li>
 <li>Check with vmmap the memory region for the <code>__TEXT</code> segment for the program you want to dump.</li>
-<li>Dump that memory region to a file using gdb “dump memory” command.</li>
-<li>Write the memory dump into the original file (you must replace the original <code>__TEXT</code> segment with the dumped one). You can use copy&amp;paste inside an hex editor (that’s what I did), or you can use Pedram trick with “dd” (that’s what I should have done, DOH). Don’t forget to calculate the correct offset for the <code>__TEXT</code> segment (beware with fat binaries). My first approach was to dump the whole program, when in reality only the <code>__TEXT</code> segment is required. Hey, it was a quick test and I give it a little thought while getting ready to write this  .</li>
+<li>Dump that memory region to a file using gdb "dump memory" command.</li>
+<li>Write the memory dump into the original file (you must replace the original <code>__TEXT</code> segment with the dumped one). You can use copy&amp;paste inside an hex editor (that's what I did), or you can use Pedram trick with "dd" (that's what I should have done, DOH). Don't forget to calculate the correct offset for the <code>__TEXT</code> segment (beware with fat binaries). My first approach was to dump the whole program, when in reality only the <code>__TEXT</code> segment is required. Hey, it was a quick test and I give it a little thought while getting ready to write this  .</li>
 <li>Fix the flags for <code>LC_SEGMENT/__TEXT</code> from <code>0×8</code> to <code>0×0</code> (else it will still try to decrypt the binary and the result will be garbage and a nice crash).</li>
-<li>That’s it.</li>
+<li>That's it.</li>
 </ol>
 </blockquote>
 
