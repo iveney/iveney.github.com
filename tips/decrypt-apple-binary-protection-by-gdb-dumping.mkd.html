@@ -1,0 +1,144 @@
+      <html>
+        <head>
+          <title>decrypt-apple-binary-protection-by-gdb-dumping.mkd</title>
+          <style type="text/css">      body{
+        background-color: #FFFFFF;
+        padding: 20px;
+        margin: 0px;
+      }
+      pre{
+        border: solid #DEDEDE 1px;
+        background-color: #F6F6F6;
+        padding: 4px;
+      }
+      code{
+        border: solid #DEDEDE 1px;
+        background-color: #F6F6F6;
+        padding: 1px;
+        font-family: monospace;
+      }
+      pre > code{
+        border: none;
+        padding: none;
+      }
+      blockquote{
+        border: dashed #AEAEAE 1px;
+        background-color: #F6F6F6;
+        padding: 4px 10px 4px 10px;
+        font-family: monospace;
+      }
+      div#main-container{
+        background-color: #F2F2F2;
+        padding: 20px;
+        margin: 0px;
+        border: solid #D0D0D0 1px;
+      }
+</style>
+        </head>
+        <body>
+          <div id="main-container">
+            <h1>Disclaimer</h1>
+
+<p>This is a note on how to use gdb memory dumping
+only for study purpose.
+Not to be used in reverse engineering softwares,
+which is ILLEGAL!</p>
+
+<h1>Introduction</h1>
+
+<p>Software companies use some kind of mechanism to protect their product.
+For example, Apply employ <a href="http://www.osxbook.com/book/bonus/chapter7/binaryprotection/">Apple Binary Protection</a> to do this.
+The binary is encrypted such that one is hard to disassemble it.
+The OS will do decryption when it loads the binary into memory.
+Hence, by utilizing this point one can dump an unencrypted program.</p>
+
+<h1>Basic idea</h1>
+
+<p>(<a href="http://reverse.put.as/2009/06/30/how-to-dump-an-apple-protected-binary/">Source</a>):</p>
+
+<blockquote><ol>
+<li>Load the app into gdb (or attach to the already running process). Just let the app load and then break into gdb with control-c (if you are starting from gdb).</li>
+<li>Check with vmmap the memory region for the <code>__TEXT</code> segment for the program you want to dump.</li>
+<li>Dump that memory region to a file using gdb “dump memory” command.</li>
+<li>Write the memory dump into the original file (you must replace the original <code>__TEXT</code> segment with the dumped one). You can use copy&amp;paste inside an hex editor (that’s what I did), or you can use Pedram trick with “dd” (that’s what I should have done, DOH). Don’t forget to calculate the correct offset for the <code>__TEXT</code> segment (beware with fat binaries). My first approach was to dump the whole program, when in reality only the <code>__TEXT</code> segment is required. Hey, it was a quick test and I give it a little thought while getting ready to write this  .</li>
+<li>Fix the flags for <code>LC_SEGMENT/__TEXT</code> from <code>0×8</code> to <code>0×0</code> (else it will still try to decrypt the binary and the result will be garbage and a nice crash).</li>
+<li>That’s it.</li>
+</ol>
+</blockquote>
+
+<h1>Details</h1>
+
+<h2>Encryption tools</h2>
+
+<p>An encryption tool is provided <a href="http://www.osxbook.com/book/bonus/chapter7/binaryprotection/">here</a> and another <a href="http://quatermain.tumblr.com/post/97884723/apple-binary-protection-tool">here</a>.
+The second one is a derivative of the first one.
+However, both of them are kind of out-dated (tested in 10.5)
+and does not work well in my system (OSX 10.6.7).
+I tried to use them to encrypt <code>/bin/ls</code>, either <code>i386</code> or <code>x86-64</code>,
+but both of them fail to generate a correct binary that runs.
+Hence, I have to find some already-encrypted binary to use.
+In this case I choosed <code>/System/Library/CoreServices/Finder.app</code>.</p>
+
+<h2>Decryption tools</h2>
+
+<p>A dumper written in C is provided in <a href="http://reverse.put.as/2009/07/08/a-memory-dumper-for-apple-crypted-binaries-hurray/">here</a>. However, it does not support
+64b. I did not test it thouroughly, and I want to do it using existing tools and scripts.</p>
+
+<h2>Prerequisite and Tools needed</h2>
+
+<p>The reader should understand the structure of Mach-O file.
+See <a href="http://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/MachORuntime/Reference/reference.html">here</a>.</p>
+
+<p><img src="http://developer.apple.com/library/mac/documentation/DeveloperTools/Conceptual/MachORuntime/art/mach_o_segments.gif" alt="mach-o structure" /></p>
+
+<p>Tools:</p>
+
+<ul>
+<li>otool</li>
+<li>gdb</li>
+<li>dd</li>
+</ul>
+
+
+<p>They are all available with Snow Leopard 10.6.7.</p>
+
+<h2>Steps</h2>
+
+<p>For simplicity I want to do the i386 first (x86_64 may be added later...).
+Here's how:</p>
+
+<pre><code># make a i386-only binary 
+$ ditto --rsrc --arch i386 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder Finder-i386
+$ file Finder-i386
+Finder-i386: Mach-O executable i386
+
+# Use otool to obtain some information:
+$ otool Finder-i386
+... (removed)
+Load command 1
+      cmd LC_SEGMENT
+  cmdsize 736
+  segname __TEXT
+   vmaddr 0x00001000   # start address to dump!
+   vmsize 0x00344000   # vmaddr + vmsize = 0x00345000 = end address to dump!
+  fileoff 0            # offset of this section in the binary file
+ filesize 3424256      # length of this section
+  maxprot 0x00000007
+ initprot 0x00000005
+   nsects 10
+    flags 0x8          # 0x8 marks encrypted, need to change to 0x0 afterwards
+... (removed)
+$ gdb Finder-i386 # load into gdb
+(gdb) b *0x1000 # break at start of __TEXT segment
+(gdb) dump memory Finder-i386.bin 0x00001000 0x00345000 # the offset is obtained from otool
+# quit gdb
+$ dd bs=1 conv=notrunc if=Finder-i386.bin of=Finder-i386 # replace the original __TEXT section
+</code></pre>
+
+<p>Finally, use a hex editor to manually replace the flags from 0x8 to 0x0.
+The offset can be found by referencing the <a href="http://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/MachORuntime/Reference/reference.html">data structures</a> of Mach-O header and load commands.</p>
+
+<p>Another two useful reference is for iPhone apps <a href="http://tungchingkai.blogspot.com/2009/02/how-to-decrypt-iphone-ipa-file.html">1</a> <a href="http://dvlabs.tippingpoint.com/blog/2009/03/06/reverse-engineering-iphone-appstore-binaries">2</a>.</p>
+          <div>
+        </body>
+      </html>

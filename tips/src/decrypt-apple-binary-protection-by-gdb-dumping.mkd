@@ -1,0 +1,105 @@
+Disclaimer
+==========
+This is a note on how to use gdb memory dumping
+only for study purpose.
+Not to be used in reverse engineering softwares,
+which is ILLEGAL!
+
+Introduction
+============
+Software companies use some kind of mechanism to protect their product.
+For example, Apply employ [Apple Binary Protection][ABP] to do this.
+The binary is encrypted such that one is hard to disassemble it.
+The OS will do decryption when it loads the binary into memory.
+Hence, by utilizing this point one can dump an unencrypted program.
+
+Basic idea
+==========
+([Source][DUMP]):
+
+> 1. Load the app into gdb (or attach to the already running process). Just let the app load and then break into gdb with control-c (if you are starting from gdb).
+> 2. Check with vmmap the memory region for the `__TEXT` segment for the program you want to dump.
+> 3. Dump that memory region to a file using gdb “dump memory” command.
+> 4. Write the memory dump into the original file (you must replace the original `__TEXT` segment with the dumped one). You can use copy&paste inside an hex editor (that’s what I did), or you can use Pedram trick with “dd” (that’s what I should have done, DOH). Don’t forget to calculate the correct offset for the `__TEXT` segment (beware with fat binaries). My first approach was to dump the whole program, when in reality only the `__TEXT` segment is required. Hey, it was a quick test and I give it a little thought while getting ready to write this  .
+> 5. Fix the flags for `LC_SEGMENT/__TEXT` from `0×8` to `0×0` (else it will still try to decrypt the binary and the result will be garbage and a nice crash).
+> 6. That’s it.
+
+Details
+=======
+Encryption tools
+----------------
+An encryption tool is provided [here][ABP] and another [here][ENTOOL].
+The second one is a derivative of the first one.
+However, both of them are kind of out-dated (tested in 10.5) 
+and does not work well in my system (OSX 10.6.7).
+I tried to use them to encrypt `/bin/ls`, either `i386` or `x86-64`, 
+but both of them fail to generate a correct binary that runs.
+Hence, I have to find some already-encrypted binary to use.
+In this case I choosed `/System/Library/CoreServices/Finder.app`.
+
+Decryption tools
+----------------
+A dumper written in C is provided in [here][Dumper]. However, it does not support
+64b. I did not test it thouroughly, and I want to do it using existing tools and scripts.
+
+Prerequisite and Tools needed
+------------
+The reader should understand the structure of Mach-O file.
+See [here][Mach-O].
+
+![mach-o structure][Mach-o structure]
+
+Tools:
+
+- otool
+- gdb
+- dd
+
+They are all available with Snow Leopard 10.6.7.
+
+Steps
+-----
+For simplicity I want to do the i386 first (x86_64 may be added later...).
+Here's how:
+
+    # make a i386-only binary 
+    $ ditto --rsrc --arch i386 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder Finder-i386
+    $ file Finder-i386
+    Finder-i386: Mach-O executable i386
+
+    # Use otool to obtain some information:
+    $ otool Finder-i386
+    ... (removed)
+    Load command 1
+          cmd LC_SEGMENT
+      cmdsize 736
+      segname __TEXT
+       vmaddr 0x00001000   # start address to dump!
+       vmsize 0x00344000   # vmaddr + vmsize = 0x00345000 = end address to dump!
+      fileoff 0            # offset of this section in the binary file
+     filesize 3424256      # length of this section
+      maxprot 0x00000007
+     initprot 0x00000005
+       nsects 10
+        flags 0x8          # 0x8 marks encrypted, need to change to 0x0 afterwards
+    ... (removed)
+    $ gdb Finder-i386 # load into gdb
+    (gdb) b *0x1000 # break at start of __TEXT segment
+    (gdb) dump memory Finder-i386.bin 0x00001000 0x00345000 # the offset is obtained from otool
+    # quit gdb
+    $ dd bs=1 conv=notrunc if=Finder-i386.bin of=Finder-i386 # replace the original __TEXT section
+
+Finally, use a hex editor to manually replace the flags from 0x8 to 0x0.
+The offset can be found by referencing the [data structures][MACH-O] of Mach-O header and load commands.
+
+Another two useful reference is for iPhone apps [1][] [2][].
+
+[ABP]: http://www.osxbook.com/book/bonus/chapter7/binaryprotection/
+[DRM]: http://osxbook.com/book/bonus/chapter7/tpmdrmmyth/
+[DUMP]: http://reverse.put.as/2009/06/30/how-to-dump-an-apple-protected-binary/
+[DUMPER]: http://reverse.put.as/2009/07/08/a-memory-dumper-for-apple-crypted-binaries-hurray/
+[ENTOOL]: http://quatermain.tumblr.com/post/97884723/apple-binary-protection-tool
+[MACH-O]: http://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/MachORuntime/Reference/reference.html
+[Mach-o structure]: http://developer.apple.com/library/mac/documentation/DeveloperTools/Conceptual/MachORuntime/art/mach_o_segments.gif
+[1]: http://tungchingkai.blogspot.com/2009/02/how-to-decrypt-iphone-ipa-file.html
+[2]: http://dvlabs.tippingpoint.com/blog/2009/03/06/reverse-engineering-iphone-appstore-binaries
