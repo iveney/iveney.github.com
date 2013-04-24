@@ -2242,27 +2242,36 @@ git clone git://iveney.indefero.net/iveney/zspice.git
 [[pro git|http://http://progit.org/book]]
 !tricks &amp; tips</pre>
 </div>
-<div title="public key" modifier="Iveney" created="200903111824" modified="200903111849" changecount="11">
+<div title="public key" modifier="Zigang" created="200903111824" modified="201304242058" changecount="27">
 <pre>Here is my [[public key|./data/zgxiao.asc]].
 {{{
 gpg --import zgxiao.asc
 }}}
-or just download it from keyservers, e.g. from [[pgp.mit.edu|http://pgp.mit.edu]]
+or just download it from keyservers, e.g. [[pgp.mit.edu|http://pgp.mit.edu]], [[keys.gnupg.net/]]
 {{{
-gpg --keyserver pgp.mit.edu --recv-key 0x55CB88EB
+gpg --keyserver pgp.mit.edu --recv-key A62E52EA
 }}}
-Other keyservers:
-*wwwkeys.pgp.net
-*keyring.debian.org
-If you wish to keysigning with me, just drop me an email.
+
+!Keysigning with me
+I will only sign a key in one of the following conditions:
+* I have done very careful checking:
+** I will sign your key if we meet in person and exchange government-issued identification and key fingerprints if we don’t know each other.
+** I will sign your key if we cannot meet in person but someone I ultimately trust notifies me that you want a signature, and gives me your key id verbally or in person.
+** I will sign your key without meeting in person and without exchanging identification and key fingerprints if I know you very well personally (such as working with you, going to school with you, family, etc.)
+* I have done casual checking:
+** Authentication by sending me a scan of the following document, with your name and email address __hand written__ on it:
+*** United States driver license or SSN
+*** China government issued passport
+*** UIUC i-card
+** Compose an email and sign it with your key, send to my gmail account: iveney
+
+Inspired by [[this|http://pthree.org/my-pgp-key-signing-policy/]].
+
 !How to verify?
-After you imported my key, you can verify this encrypted signed [[file|./data/hello.sig]] by:
+After you imported my key, you can verify this encrypted signed [[file|./data/hello.txt.gpg]] by:
 {{{
-gpg --output hello.txt --decrypt hello.sig
-cat hello.txt
-}}}
-!Don't know what is going on?
-Check the links below. I wish I could have enough time and knowledge to write an introduction by myself.</pre>
+gpg --decrypt hello.txt.gpg
+}}}</pre>
 </div>
 <div title="university" modifier="Zigang" created="201005261206" modified="201006161026" changecount="11">
 <pre>!SYSU (Bachelor)
